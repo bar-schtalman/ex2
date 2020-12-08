@@ -1,4 +1,4 @@
-package ex_2;
+package ex_2;S
 
 import java.util.List;
 /**

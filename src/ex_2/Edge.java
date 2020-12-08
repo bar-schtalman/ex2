@@ -9,11 +9,11 @@ public class Edge implements edge_data{
     private double weight;
     private int tag;
 
-    public Edge (int src, int dest, double w){
-        this.src.;
-        this.dest=null;
+    public Edge (node_data src, node_data dest, double w){
+        this.src=src;
+        this.dest=dest;
         this.info=null;
-        this.weight=0;
+        this.weight=w;
         this.tag=-1;
     }
     public Edge(Edge edge){

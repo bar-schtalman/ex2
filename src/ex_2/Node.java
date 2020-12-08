@@ -13,10 +13,9 @@ public class Node implements node_data{
     public Node(){
         this.key=0;
         this.geo=null;
-        this.weight=0;
+        this.weight = 0;
         this.tag=-1;
         this.info="white";
-        this.hashE=new HashMap<Integer,edge_data>();
     }
     public Node (Node node){
         this.key=node.key;
@@ -26,9 +25,7 @@ public class Node implements node_data{
         this.info= node.info;
         this.hashE=new HashMap<Integer,edge_data>();
     }
-    public HashMap getHash(){
-        return this.hashE;
-    }
+
     @Override
     public int getKey() {
         return this.key;
