@@ -10,6 +10,7 @@ public class Node implements node_data{
     private int tag;
     private String info;
     private HashMap <Integer,edge_data> hashE;
+
     public Node(){
         this.key = 0;
         this.geo = null;

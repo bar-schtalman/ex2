@@ -21,7 +21,8 @@ public class DWGraph_DS implements directed_weighted_graph{
     public DWGraph_DS(DWGraph_DS graph){
         this.hashNode = new HashMap<Integer, node_data>();
         this.hashEdgeIn = new HashMap <Integer,HashMap<Integer,edge_data>> ();
-        for (node_data temp : graph.getV()) {
+        for (node_data temp : graph.getV())
+        {
             this.hashNode.put(temp.getKey(), temp);
         }
         this.mc = graph.mc;

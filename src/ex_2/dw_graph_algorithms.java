@@ -1,4 +1,4 @@
-package ex_2;S
+package ex_2;
 
 import java.util.List;
 /**
@@ -8,7 +8,7 @@ import java.util.List;
  * 2. isConnected(); // strongly (all ordered pais connected)
  * 3. double shortestPathDist(int src, int dest);
  * 4. List<node_data> shortestPath(int src, int dest);
- * 5. Save(file); // JSON file
+ * 5. Save(file); // eJSON fil
  * 6. Load(file); // JSON file
  *
  * @author boaz.benmoshe
