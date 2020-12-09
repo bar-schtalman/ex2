@@ -11,19 +11,19 @@ public class Node implements node_data{
     private String info;
     private HashMap <Integer,edge_data> hashE;
     public Node(){
-        this.key=0;
-        this.geo=null;
+        this.key = 0;
+        this.geo = null;
         this.weight = 0;
-        this.tag=-1;
-        this.info="white";
+        this.tag = -1;
+        this.info ="white";
     }
     public Node (Node node){
-        this.key=node.key;
-        this.geo=node.geo;
-        this.weight=node.weight;
-        this.tag=node.tag;
-        this.info= node.info;
-        this.hashE=new HashMap<Integer,edge_data>();
+        this.key = node.key;
+        this.geo = node.geo;
+        this.weight = node.weight;
+        this.tag = node.tag;
+        this.info = node.info;
+        this.hashE = new HashMap<Integer,edge_data>();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Node implements node_data{
 
     @Override
     public void setLocation(geo_location p) {
-        this.geo=p;
+        this.geo = p;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Node implements node_data{
 
     @Override
     public void setWeight(double w) {
-        this.weight=w;
+        this.weight = w;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Node implements node_data{
 
     @Override
     public void setInfo(String s) {
-        this.info=s;
+        this.info = s;
     }
 
     @Override
@@ -68,6 +68,6 @@ public class Node implements node_data{
 
     @Override
     public void setTag(int t) {
-        this.tag=t;
+        this.tag = t;
     }
 }
