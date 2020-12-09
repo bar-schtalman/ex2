@@ -10,18 +10,18 @@ public class Edge implements edge_data{
     private int tag;
 
     public Edge (node_data src, node_data dest, double w){
-        this.src=src;
-        this.dest=dest;
-        this.info=null;
-        this.weight=w;
-        this.tag=-1;
+        this.src = src;
+        this.dest = dest;
+        this.info = null;
+        this.weight = w;
+        this.tag = -1;
     }
     public Edge(Edge edge){
-        this.src=edge.src;
-        this.dest=edge.dest;
-        this.info=edge.info;
-        this.weight=edge.weight;
-        this.tag=edge.tag;
+        this.src = edge.src;
+        this.dest = edge.dest;
+        this.info = edge.info;
+        this.weight = edge.weight;
+        this.tag = edge.tag;
     }
     @Override
     public int getSrc() {
@@ -45,7 +45,7 @@ public class Edge implements edge_data{
 
     @Override
     public void setInfo(String s) {
-        this.info=s;
+        this.info = s;
     }
 
     @Override
@@ -55,6 +55,6 @@ public class Edge implements edge_data{
 
     @Override
     public void setTag(int t) {
-        this.tag=t;
+        this.tag = t;
     }
 }

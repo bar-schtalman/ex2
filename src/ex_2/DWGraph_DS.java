@@ -12,15 +12,15 @@ public class DWGraph_DS implements directed_weighted_graph{
     private int mc;
 
     public DWGraph_DS(){
-        this.hashNode=new HashMap<Integer,node_data>();
-        this.nodeSize=0;
-        this.edgeSize=0;
-        this.mc=0;
-        this.hashEdgeIn= new HashMap <Integer,HashMap<Integer,edge_data>> ();
+        this.hashNode = new HashMap<Integer,node_data>();
+        this.nodeSize = 0;
+        this.edgeSize = 0;
+        this.mc = 0;
+        this.hashEdgeIn = new HashMap <Integer,HashMap<Integer,edge_data>> ();
     }
     public DWGraph_DS(DWGraph_DS graph){
         this.hashNode = new HashMap<Integer, node_data>();
-        this.hashEdgeIn= new HashMap <Integer,HashMap<Integer,edge_data>> ();
+        this.hashEdgeIn = new HashMap <Integer,HashMap<Integer,edge_data>> ();
         for (node_data temp : graph.getV()) {
             this.hashNode.put(temp.getKey(), temp);
         }
