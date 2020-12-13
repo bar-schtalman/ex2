@@ -17,7 +17,7 @@ public class DWGraph_DS implements directed_weighted_graph{
 		this.mc = 0;
 		this.hashNode = new HashMap<Integer,node_data>();
 	}
-	
+
 	public DWGraph_DS(DWGraph_DS graph)
 	{
 
@@ -89,7 +89,7 @@ public class DWGraph_DS implements directed_weighted_graph{
 		Node node = (Node) hashNode.get(node_id);
 		return node.getNeighboursEdgesOut();
 	}
-	
+
 	public Collection<edge_data> getEIn(int node_id) 
 	{
 		Node node = (Node) hashNode.get(node_id);
@@ -103,10 +103,10 @@ public class DWGraph_DS implements directed_weighted_graph{
 		{
 			for(edge_data temp : getE(key))
 				this.removeEdge(temp.getSrc(), temp.getDest());
-			
+
 			for(edge_data temp : getEIn(key))
 				this.removeEdge(temp.getSrc(), temp.getDest());
-			
+
 			this.nodeSize--;
 			this.mc++;
 			return this.hashNode.remove(key);

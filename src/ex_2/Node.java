@@ -9,6 +9,7 @@ public class Node implements node_data{
     private int tag;
     private double weight;
     private String info;
+    private node_data parent;
     private geo_location geo;
     private HashMap<Integer, edge_data> hashEdgeIn;
     private HashMap<Integer, edge_data> hashEdgeOut;
@@ -17,19 +18,21 @@ public class Node implements node_data{
     {
         this.key = 0;
         this.tag = Integer.MAX_VALUE;
-        this.weight = Integer.MAX_VALUE;
+        this.weight = -1;
         this.info ="white";
+        this.parent = null;
         this.geo = null;
         this.hashEdgeIn = new HashMap<Integer, edge_data>();
         this.hashEdgeOut = new HashMap<Integer, edge_data>();
     }
     
-    public Node (Node node)
+    public Node(Node node)
     {
         this.key = node.key;
         this.tag = node.tag;
         this.weight = node.weight;
         this.info = node.info;
+        this.parent = node.getParent();
         this.geo = node.geo;
         this.hashEdgeIn = new HashMap<Integer, edge_data>();
         this.hashEdgeOut = new HashMap<Integer, edge_data>();
@@ -116,4 +119,9 @@ public class Node implements node_data{
 
     @Override
     public void setTag(int t) { this.tag = t; }
+
+    public node_data getParent() { return parent; }
+
+	public void setParent(node_data next) { this.parent = next;	}
+
 }
