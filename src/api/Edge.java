@@ -1,6 +1,4 @@
-package ex2;
-
-import java.util.HashMap;
+package api;
 
 public class Edge implements edge_data
 {

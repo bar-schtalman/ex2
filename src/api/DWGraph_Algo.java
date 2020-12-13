@@ -1,4 +1,4 @@
-package ex2;
+package api;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 
-public class DWGraph_Algo implements dw_graph_algorithms{
+public class DWGraph_Algo implements dw_graph_algorithms {
 
 	directed_weighted_graph graph;
 

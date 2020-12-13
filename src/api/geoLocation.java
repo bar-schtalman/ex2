@@ -1,4 +1,4 @@
-package ex_2;
+package api;
 
 public class geoLocation implements geo_location{
     private double x;
