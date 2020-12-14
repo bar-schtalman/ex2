@@ -1,13 +1,26 @@
 package api;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.*;
 
 
-public class DWGraph_Algo implements dw_graph_algorithms {
+
+public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 
 	directed_weighted_graph graph;
 
@@ -118,16 +131,50 @@ public class DWGraph_Algo implements dw_graph_algorithms {
 	}
 
 	@Override
-	public boolean save(String file) 
+	public boolean save(String file)
 	{
-		// TODO Auto-generated method stub
-		return false;
+//		Gson gson = new GsonBuilder().create();
+//		JsonObject graph = new JsonObject();
+//		JsonArray graphNodes = new JsonArray();
+//		JsonArray ni = new JsonArray();
+//		Collection <node_data> nodes = this.graph.getV();
+//		for (node_data node : nodes){
+//			Collection edges = this.graph.getE(node.getKey());
+//			for (edge_data edge_data : edges){
+//				JsonObject Edges = new JsonObject();
+//				Edges.addProperty("src" , edge_data.getSrc());
+//				Edges.addProperty("w" , edge_data.getWeight());
+//				Edges.addProperty("dest" , edge_data.getDest());
+//				ni.add(Edges);
+//			}
+//			JsonObject nodeList = new JsonObject();
+//			geo_location geo = node.getLocation();
+//			nodeList.addProperty("pos" , geo.toString());
+//			nodeList.addProperty("id" , node.getKey());
+//			graphNodes.add(nodeList);
+//		}
+//			graph.add("Edges", ni);
+//			graph.add("Nodes" , graphNodes);
+//			String json = gson.toJson(graph);
+//			try{
+//				PrintWriter pw = new PrintWriter(new File("file"));
+//				pw.write(json);
+//				pw.close();
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//				return false;
+//			}
+
+		return true;
 	}
 
 	@Override
-	public boolean load(String file) 
+	public boolean load(String file)
 	{
-		// TODO Auto-generated method stub
+//		try{
+//			GsonBuilder builder = new GsonBuilder();
+//			builder.registerTypeAdapter(directed_weighted_graph.class , new Graph_Load());
+//		}
 		return false;
 	}
 

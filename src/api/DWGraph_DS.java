@@ -65,7 +65,7 @@ public class DWGraph_DS implements directed_weighted_graph{
 	@Override
 	public void connect(int src, int dest, double w) 
 	{
-		if (hashNode.containsKey(src) && hashNode.containsKey(dest) && src != dest) 
+		if (hashNode.containsKey(src) && hashNode.containsKey(dest) && src != dest && w != 0)
 		{
 			Node source = (Node) this.hashNode.get(src);
 			if(!source.hasEdge(dest))
@@ -73,9 +73,12 @@ public class DWGraph_DS implements directed_weighted_graph{
 				Node destiny = (Node) this.hashNode.get(dest);
 				source.addEdgeOut(destiny, w);
 				destiny.addEdgeIn(source, w);
+				this.edgeSize++;
+				this.mc++;
+			}
 			}
 		}
-	}
+
 
 	@Override
 	public Collection<node_data> getV()

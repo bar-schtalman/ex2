@@ -14,9 +14,9 @@ public class Node implements node_data{
     private HashMap<Integer, edge_data> hashEdgeIn;
     private HashMap<Integer, edge_data> hashEdgeOut;
    
-    public Node()
+    public Node(int key)
     {
-        this.key = 0;
+        this.key = key;
         this.tag = Integer.MAX_VALUE;
         this.weight = -1;
         this.info ="white";
