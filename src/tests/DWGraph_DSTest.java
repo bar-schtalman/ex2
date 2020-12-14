@@ -1,5 +1,9 @@
-package api;
+package tests;
 
+import api.DWGraph_DS;
+import api.Node;
+import api.directed_weighted_graph;
+import api.node_data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
