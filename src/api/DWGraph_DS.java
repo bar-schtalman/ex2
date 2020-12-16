@@ -10,6 +10,7 @@ public class DWGraph_DS implements directed_weighted_graph{
 	private int mc;
 	private HashMap<Integer,node_data> hashNode;
 
+
 	public DWGraph_DS()
 	{
 		this.nodeSize = 0;

@@ -1,9 +1,6 @@
 package api;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,42 +19,42 @@ import java.util.*;
 
 public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 
-	directed_weighted_graph graph;
+	directed_weighted_graph DWGraph;
 
 	public DWGraph_Algo()
 	{
-		this.graph = null;
+		this.DWGraph = null;
 	}
 
 	@Override
 	public void init(directed_weighted_graph g) 
 	{
-		this.graph = g;	
+		this.DWGraph = g;
 	}
 
 	@Override
 	public directed_weighted_graph getGraph() 
 	{
 		// TODO Auto-generated method stub
-		return this.graph;
+		return this.DWGraph;
 	}
 
 	@Override
 	public directed_weighted_graph copy() 
 	{
 		// TODO Auto-generated method stub
-		return new DWGraph_DS((DWGraph_DS)this.graph);
+		return new DWGraph_DS((DWGraph_DS)this.DWGraph);
 	}
 
 	@Override
 	public boolean isConnected() 
 	{
 		// TODO Auto-generated method stub
-		if(this.graph == null || this.graph.nodeSize() <= 1)
+		if(this.DWGraph == null || this.DWGraph.nodeSize() <= 1)
 			return true;
-		if(this.graph.nodeSize() > 1 && this.graph.edgeSize() == 0)
+		if(this.DWGraph.nodeSize() > 1 && this.DWGraph.edgeSize() == 0)
 			return false;
-		Iterator<node_data> it = this.graph.getV().iterator();
+		Iterator<node_data> it = this.DWGraph.getV().iterator();
 		node_data temp = it.next();
 		return this.isConnected(temp.getKey() , it.next().getKey());
 	}
@@ -133,50 +130,58 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 	@Override
 	public boolean save(String file)
 	{
-//		Gson gson = new GsonBuilder().create();
-//		JsonObject graph = new JsonObject();
-//		JsonArray graphNodes = new JsonArray();
-//		JsonArray ni = new JsonArray();
-//		Collection <node_data> nodes = this.graph.getV();
-//		for (node_data node : nodes){
-//			Collection edges = this.graph.getE(node.getKey());
-//			for (edge_data edge_data : edges){
-//				JsonObject Edges = new JsonObject();
-//				Edges.addProperty("src" , edge_data.getSrc());
-//				Edges.addProperty("w" , edge_data.getWeight());
-//				Edges.addProperty("dest" , edge_data.getDest());
-//				ni.add(Edges);
-//			}
-//			JsonObject nodeList = new JsonObject();
-//			geo_location geo = node.getLocation();
-//			nodeList.addProperty("pos" , geo.toString());
-//			nodeList.addProperty("id" , node.getKey());
-//			graphNodes.add(nodeList);
-//		}
-//			graph.add("Edges", ni);
-//			graph.add("Nodes" , graphNodes);
-//			String json = gson.toJson(graph);
-//			try{
-//				PrintWriter pw = new PrintWriter(new File("file"));
-//				pw.write(json);
-//				pw.close();
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//				return false;
-//			}
+		JsonObject graph= new JsonObject();
+		JsonArray edges= new JsonArray();
+		JsonArray nodes= new JsonArray();
 
+
+		for (node_data n: DWGraph.getV()){
+			JsonObject node= new JsonObject();
+			String pos= n.getLocation().x()+","+n.getLocation().y()+","+n.getLocation().z();
+			node.addProperty("pos", pos);
+			node.addProperty("id", n.getKey());
+			nodes.add(node);
+		}
+		graph.add("Edges",edges);
+		graph.add("Nodes",nodes);
+
+		try
+		{
+			Gson gson = new Gson();
+			PrintWriter pw = new PrintWriter(new File(file));
+			pw.write(gson.toJson(graph));
+			pw.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 		return true;
+
+
+
 	}
 
 	@Override
 	public boolean load(String file)
 	{
-//		try{
-//			GsonBuilder builder = new GsonBuilder();
-//			builder.registerTypeAdapter(directed_weighted_graph.class , new Graph_Load());
-//		}
-		return false;
+		try {
+			GsonBuilder builder = new GsonBuilder();
+			builder.registerTypeAdapter(DWGraph_DS.class, new DW_GraphJsonDeserializer());
+			Gson gson = builder.create();
+
+			FileReader reader = new FileReader(file);
+			this.DWGraph= gson.fromJson(reader, DWGraph_DS.class);
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
 	}
+
 
 	//	a function that gets a node from the graph and travel on the graph 
 	//	by the edges and neighbours and changes their values for connectivity checks 
@@ -193,9 +198,9 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 			if(next.getInfo().equals("white")) //if the nodes info is white then we need to deal with it
 				next.setInfo("gray");
 
-			for(edge_data edge : this.graph.getE(next.getKey()))
+			for(edge_data edge : this.DWGraph.getE(next.getKey()))
 			{
-				Node temp = (Node)this.graph.getNode(edge.getDest());
+				Node temp = (Node)this.DWGraph.getNode(edge.getDest());
 				if(temp.getInfo() == "white")
 				{
 					temp.setTag(next.getTag()+1);
@@ -221,9 +226,9 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 		while(!q.isEmpty()) 
 		{
 			node_data next = q.poll(); // the next node
-			for(edge_data edge : this.graph.getE(next.getKey())) //changes the nodes neighbours data and adds them to the queue
+			for(edge_data edge : this.DWGraph.getE(next.getKey())) //changes the nodes neighbours data and adds them to the queue
 			{
-				Node tempNei = (Node)this.graph.getNode(edge.getDest());				
+				Node tempNei = (Node)this.DWGraph.getNode(edge.getDest());
 				if(tempNei.getWeight() == -1 || tempNei.getWeight() > next.getWeight() + edge.getWeight()) 
 				{
 					tempNei.setWeight(next.getWeight() + edge.getWeight());

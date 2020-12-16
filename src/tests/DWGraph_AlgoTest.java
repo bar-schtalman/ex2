@@ -1,11 +1,44 @@
 package tests;
 
 import api.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DWGraph_AlgoTest {
+    private directed_weighted_graph g;
+    private dw_graph_algorithms g2;
+    @BeforeEach
+    void Build() {
+        g =new DWGraph_DS();
+        for (int i=0;i<10;i++){
+            node_data n = new Node(i);
+            g.addNode(n);
+        }
+        g.connect(0,1,1);
+        g.connect(0,8,2);
+        g.connect(9,0,1);
+        g.connect(1,5,25);
+        g.connect(1,4,3);
+        g.connect(4,3,1);
+        g.connect(2,4,1.5);
+        g.connect(3,2,0.5);
+        g.connect(7,6,1);
+        g.connect(6,7,1);
+        g.connect(5,7,4);
+        g.connect(8,5,3);
+        g.connect(2,1,5);
+        g.connect(7,8,2.5);
+        g.connect(5,9,1.5);
+        g2=new DWGraph_Algo();
+        g2.init(g);
+    }
+
+
+    /**
+     *  check copy of a graph
+     */
     @Test
     void init(){
         directed_weighted_graph g = new DWGraph_DS();
@@ -33,5 +66,15 @@ public class DWGraph_AlgoTest {
     @Test
     void shortestPath(){
 
+    }
+    @Test
+    void saveLoad() {
+        assertTrue(g2.save("graph_test.json"));
+        assertTrue(g2.load("graph_test.json"));
+        directed_weighted_graph loadGraph =g2.getGraph();
+        assertEquals(g,loadGraph);
+        int rnd = (int) (Math.random()*10);
+        g.removeNode(rnd);
+        assertNotEquals(g,loadGraph);
     }
 }
