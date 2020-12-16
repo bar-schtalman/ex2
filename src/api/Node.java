@@ -13,6 +13,7 @@ public class Node implements node_data{
     private geo_location geo;
     private HashMap<Integer, edge_data> hashEdgeIn;
     private HashMap<Integer, edge_data> hashEdgeOut;
+
    
     public Node(int key)
     {
@@ -24,6 +25,7 @@ public class Node implements node_data{
         this.geo = null;
         this.hashEdgeIn = new HashMap<Integer, edge_data>();
         this.hashEdgeOut = new HashMap<Integer, edge_data>();
+        this.geo = new geoLocation(0,0,0);
     }
     
     public Node(Node node)
@@ -36,6 +38,7 @@ public class Node implements node_data{
         this.geo = node.geo;
         this.hashEdgeIn = new HashMap<Integer, edge_data>();
         this.hashEdgeOut = new HashMap<Integer, edge_data>();
+        this.geo = node.geo;
     }
         
     public boolean hasEdge(int key)
