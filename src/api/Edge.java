@@ -48,4 +48,14 @@ public class Edge implements edge_data
     public void setTag(int t) { this.tag = t; }
 
     public void setWeight(double weight) { this.weight = weight; }
+
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof edge_data && obj != null)
+            return this.src == ((edge_data) obj).getSrc() &&
+                    this.dest == ((edge_data) obj).getDest() &&
+                    this.weight == ((edge_data) obj).getWeight();
+
+        return false;
+    }
 }

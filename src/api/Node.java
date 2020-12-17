@@ -127,4 +127,36 @@ public class Node implements node_data{
 
 	public void setParent(node_data next) { this.parent = next;	}
 
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof node_data && obj != null)
+        {
+            Node n = (Node)obj;
+            if(n.getKey() != this.key)
+                return false;
+
+            for(edge_data e : n.getNeighboursEdgesOut())
+            {
+                if(this.hashEdgeOut.containsKey(e.getDest()))
+                {
+                    edge_data temp = this.hashEdgeOut.get(e.getDest());
+                    if(!temp.equals(e))
+                        return false;
+                }
+                else
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    public int compareTo(Node o) {
+        if (this.weight > o.getWeight())
+            return 1;
+        if (this.weight < o.getWeight()) {
+            return -1;
+        }
+        return 0;
+    }
 }
+

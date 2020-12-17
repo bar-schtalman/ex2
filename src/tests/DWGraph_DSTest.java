@@ -30,7 +30,7 @@ public class DWGraph_DSTest {
         g.connect(1,0,21);
         g.connect(2,1,20);
         g.connect(2,0,7);
-        assertEquals(5,g.getEdge(0,2).getWeight());// case to fix :update edge weight
+        assertEquals(5,g.getEdge(0,2).getWeight());
         assertEquals(21,g.getEdge(1,0).getWeight());
         assertEquals(4,g.getEdge(0,1).getWeight());
     }

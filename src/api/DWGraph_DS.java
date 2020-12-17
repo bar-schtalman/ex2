@@ -137,11 +137,33 @@ public class DWGraph_DS implements directed_weighted_graph{
 		}
 		return null;
 	}
-
-	public boolean equals(object obj)
-	{
-
+	public String toString() {
+		return "DWGraph[" +
+				",Vertexes amount = " + this.nodeSize +
+				", edges amount = " + this.edgeSize +
+				", Mode count = " + mc +
+				", vertexes = " + this.hashNode +
+				']';
 	}
+
+	public boolean equals(Object obj)
+	{
+		if(obj instanceof directed_weighted_graph && obj != null)
+			if(this.edgeSize == ((directed_weighted_graph) obj).edgeSize() &&
+					this.nodeSize == ((directed_weighted_graph) obj).nodeSize()){
+				for (node_data temp : this.getV()){
+					if (this.getNode(temp.getKey())==null){
+						return false;
+					}
+					if (this.getE(temp.getKey()).size() != ((directed_weighted_graph) obj).getE(temp.getKey()).size())
+						return false;
+				}
+				return true;
+				}
+				return false;
+			}
+
+
 	@Override
 	public int nodeSize() { return this.nodeSize; }
 
