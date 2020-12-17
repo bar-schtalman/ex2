@@ -46,4 +46,6 @@ public class Edge implements edge_data
 
     @Override
     public void setTag(int t) { this.tag = t; }
+
+    public void setWeight(double weight) { this.weight = weight; }
 }

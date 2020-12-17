@@ -77,8 +77,13 @@ public class DWGraph_DS implements directed_weighted_graph{
 				this.edgeSize++;
 				this.mc++;
 			}
+			else
+			{
+				Edge temp =	(Edge)source.getEdge(dest);
+				temp.setWeight(w);
 			}
 		}
+	}
 
 
 	@Override
@@ -133,6 +138,10 @@ public class DWGraph_DS implements directed_weighted_graph{
 		return null;
 	}
 
+	public boolean equals(object obj)
+	{
+
+	}
 	@Override
 	public int nodeSize() { return this.nodeSize; }
 
