@@ -128,67 +128,101 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 	}
 
 	@Override
-	public boolean save(String file)
-	{
-		JsonObject graph= new JsonObject();
-		JsonArray edges= new JsonArray();
-		JsonArray nodes= new JsonArray();
+	public boolean save(String file) {
+		//Making json object
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(DWGraph);
 
-
-		for (node_data n: DWGraph.getV()){
-			JsonObject node= new JsonObject();
-			String pos= n.getLocation().x()+","+n.getLocation().y()+","+n.getLocation().z();
-			node.addProperty("pos", pos);
-			node.addProperty("id", n.getKey());
-			nodes.add(node);
-			for(edge_data e : DWGraph.getE(n.getKey())){
-				JsonObject edge= new JsonObject();
-				edge.addProperty("src", e.getSrc());
-				edge.addProperty("weight",e.getWeight());
-				edge.addProperty("dest", e.getDest());
-				edges.add(edge);
-			}
-		}
-
-		graph.add("Edges",edges);
-		graph.add("Nodes",nodes);
-
-		try
-		{
-			Gson gson = new Gson();
+		//write json to file
+		try {
 			PrintWriter pw = new PrintWriter(new File(file));
-			pw.write(gson.toJson(graph));
+			pw.write(json);
 			pw.close();
-		}
-		catch (FileNotFoundException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
-
-
-
 	}
+//	public boolean save(String file)
+//	{
+//		JsonObject graph= new JsonObject();
+//		JsonArray edges= new JsonArray();
+//		JsonArray nodes= new JsonArray();
+//
+//
+//		for (node_data n: DWGraph.getV()){
+//			JsonObject node= new JsonObject();
+//			String pos= n.getLocation().x()+","+n.getLocation().y()+","+n.getLocation().z();
+//			node.addProperty("pos", pos);
+//			node.addProperty("id", n.getKey());
+//			nodes.add(node);
+//			for(edge_data e : DWGraph.getE(n.getKey())){
+//				JsonObject edge= new JsonObject();
+//				edge.addProperty("src", e.getSrc());
+//				edge.addProperty("weight",e.getWeight());
+//				edge.addProperty("dest", e.getDest());
+//				edges.add(edge);
+//			}
+//		}
+//
+//		graph.add("Edges",edges);
+//		graph.add("Nodes",nodes);
+//
+//		try
+//		{
+//			Gson gson = new Gson();
+//			PrintWriter pw = new PrintWriter(new File(file));
+//			pw.write(gson.toJson(graph));
+//			pw.close();
+//		}
+//		catch (FileNotFoundException e)
+//		{
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return true;
+//
+//
+//
+//	}
 
 	@Override
-	public boolean load(String file)
-	{
-		try {
-			GsonBuilder builder = new GsonBuilder();
-			builder.registerTypeAdapter(DWGraph_DS.class, new DW_GraphJsonDeserializer());
-			Gson gson = builder.create();
+	public boolean load(String file) {
+		//Making json object
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(DWGraph_DS.class, new DW_GraphJsonDeserializer());
+		Gson gson = builder.create();
 
-			FileReader reader = new FileReader(file);
-			this.DWGraph= gson.fromJson(reader, DWGraph_DS.class);
+		//read from json
+		try {
+			FileReader fr = new FileReader(file);
+			directed_weighted_graph loadedGraph = gson.fromJson(fr, DWGraph_DS.class);
+			this.init(loadedGraph);
 		}
-		catch (FileNotFoundException e) {
+		catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
-
 		return true;
 	}
+//	public boolean load(String file)
+//	{
+//		try {
+//			GsonBuilder builder = new GsonBuilder();
+//			builder.registerTypeAdapter(DWGraph_DS.class, new DW_GraphJsonDeserializer());
+//			Gson gson = builder.create();
+//
+//			FileReader reader = new FileReader(file);
+//			this.DWGraph= gson.fromJson(reader, DWGraph_DS.class);
+//		}
+//		catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//
+//		return true;
+//	}
 
 
 	//	a function that gets a node from the graph and travel on the graph 

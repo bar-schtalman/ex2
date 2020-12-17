@@ -58,4 +58,7 @@ public class Edge implements edge_data
 
         return false;
     }
+    public String toString (){
+        return "Edge from node "+this.src+" to "+this.dest+" ,weight: "+this.getWeight();
+    }
 }
