@@ -158,5 +158,7 @@ public class Node implements node_data{
         }
         return 0;
     }
+    public Collection <edge_data> getHashEdgeIn() { return this.hashEdgeIn.values(); }
+    public Collection <edge_data> getHashEdgeOut() { return this.hashEdgeOut.values(); }
 }
 

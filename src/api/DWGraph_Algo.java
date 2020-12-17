@@ -141,7 +141,15 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 			node.addProperty("pos", pos);
 			node.addProperty("id", n.getKey());
 			nodes.add(node);
+			for(edge_data e : DWGraph.getE(n.getKey())){
+				JsonObject edge= new JsonObject();
+				edge.addProperty("src", e.getSrc());
+				edge.addProperty("weight",e.getWeight());
+				edge.addProperty("dest", e.getDest());
+				edges.add(edge);
+			}
 		}
+
 		graph.add("Edges",edges);
 		graph.add("Nodes",nodes);
 

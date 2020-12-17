@@ -99,6 +99,8 @@ public class DWGraph_DS implements directed_weighted_graph{
 		return node.getNeighboursEdgesOut();
 	}
 
+
+
 	public Collection<edge_data> getEIn(int node_id) 
 	{
 		Node node = (Node) hashNode.get(node_id);
@@ -148,20 +150,28 @@ public class DWGraph_DS implements directed_weighted_graph{
 
 	public boolean equals(Object obj)
 	{
-		if(obj instanceof directed_weighted_graph && obj != null)
-			if(this.edgeSize == ((directed_weighted_graph) obj).edgeSize() &&
-					this.nodeSize == ((directed_weighted_graph) obj).nodeSize()){
-				for (node_data temp : this.getV()){
-					if (this.getNode(temp.getKey())==null){
-						return false;
+		if(obj != null && obj instanceof directed_weighted_graph)
+		{
+			DWGraph_DS g = (DWGraph_DS)obj;
+			if(this.edgeSize == g.edgeSize() && this.nodeSize == g.nodeSize())
+			{
+				for(node_data node : g.getV())
+				{
+					if(this.hashNode.containsKey(node.getKey()))
+					{
+						Node temp = (Node) this.hashNode.get(node.getKey());
+						if(!temp.equals(node))
+							return false;
 					}
-					if (this.getE(temp.getKey()).size() != ((directed_weighted_graph) obj).getE(temp.getKey()).size())
+					else
 						return false;
 				}
-				return true;
-				}
-				return false;
 			}
+			else
+				return false;
+		}
+		return true;
+	}
 
 
 	@Override
