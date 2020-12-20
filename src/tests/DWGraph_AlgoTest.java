@@ -4,9 +4,17 @@ import api.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class DWGraph_AlgoTest {
+    private static Random _rnd = null;
+
     private directed_weighted_graph g;
     private dw_graph_algorithms g2;
     @BeforeEach
@@ -35,10 +43,6 @@ public class DWGraph_AlgoTest {
         g2.init(g);
     }
 
-
-    /**
-     *  check copy of a graph
-     */
     @Test
     void init(){
         directed_weighted_graph g = new DWGraph_DS();
@@ -55,18 +59,7 @@ public class DWGraph_AlgoTest {
         dw_graph_algorithms ga = new DWGraph_Algo();
 
     }
-    @Test
-    void isConnected(){
 
-    }
-    @Test
-    void shortestPathDist(){
-
-    }
-    @Test
-    void shortestPath(){
-
-    }
     @Test
     void saveLoad() {
         assertTrue(g2.save("graph_test.json"));
@@ -77,4 +70,5 @@ public class DWGraph_AlgoTest {
         g.removeNode(rnd);
         assertNotEquals(g,loadGraph);
     }
+
 }

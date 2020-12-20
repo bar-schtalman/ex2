@@ -1,0 +1,337 @@
+{
+  "nodeSize": 10,
+  "edgeSize": 15,
+  "mc": 25,
+  "hashNode": {
+    "0": {
+      "key": 0,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "1": {
+          "src": 0,
+          "dest": 1,
+          "weight": 1.0,
+          "tag": -1
+        },
+        "8": {
+          "src": 0,
+          "dest": 8,
+          "weight": 2.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "1": {
+          "src": 0,
+          "dest": 1,
+          "weight": 1.0,
+          "tag": -1
+        },
+        "8": {
+          "src": 0,
+          "dest": 8,
+          "weight": 2.0,
+          "tag": -1
+        }
+      }
+    },
+    "1": {
+      "key": 1,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "4": {
+          "src": 1,
+          "dest": 4,
+          "weight": 3.0,
+          "tag": -1
+        },
+        "5": {
+          "src": 1,
+          "dest": 5,
+          "weight": 25.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "4": {
+          "src": 1,
+          "dest": 4,
+          "weight": 3.0,
+          "tag": -1
+        },
+        "5": {
+          "src": 1,
+          "dest": 5,
+          "weight": 25.0,
+          "tag": -1
+        }
+      }
+    },
+    "2": {
+      "key": 2,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "1": {
+          "src": 2,
+          "dest": 1,
+          "weight": 5.0,
+          "tag": -1
+        },
+        "4": {
+          "src": 2,
+          "dest": 4,
+          "weight": 1.5,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "1": {
+          "src": 2,
+          "dest": 1,
+          "weight": 5.0,
+          "tag": -1
+        },
+        "4": {
+          "src": 2,
+          "dest": 4,
+          "weight": 1.5,
+          "tag": -1
+        }
+      }
+    },
+    "3": {
+      "key": 3,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "2": {
+          "src": 3,
+          "dest": 2,
+          "weight": 0.5,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "2": {
+          "src": 3,
+          "dest": 2,
+          "weight": 0.5,
+          "tag": -1
+        }
+      }
+    },
+    "4": {
+      "key": 4,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "3": {
+          "src": 4,
+          "dest": 3,
+          "weight": 1.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "3": {
+          "src": 4,
+          "dest": 3,
+          "weight": 1.0,
+          "tag": -1
+        }
+      }
+    },
+    "5": {
+      "key": 5,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "7": {
+          "src": 5,
+          "dest": 7,
+          "weight": 4.0,
+          "tag": -1
+        },
+        "9": {
+          "src": 5,
+          "dest": 9,
+          "weight": 1.5,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "7": {
+          "src": 5,
+          "dest": 7,
+          "weight": 4.0,
+          "tag": -1
+        },
+        "9": {
+          "src": 5,
+          "dest": 9,
+          "weight": 1.5,
+          "tag": -1
+        }
+      }
+    },
+    "6": {
+      "key": 6,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "7": {
+          "src": 6,
+          "dest": 7,
+          "weight": 1.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "7": {
+          "src": 6,
+          "dest": 7,
+          "weight": 1.0,
+          "tag": -1
+        }
+      }
+    },
+    "7": {
+      "key": 7,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "6": {
+          "src": 7,
+          "dest": 6,
+          "weight": 1.0,
+          "tag": -1
+        },
+        "8": {
+          "src": 7,
+          "dest": 8,
+          "weight": 2.5,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "6": {
+          "src": 7,
+          "dest": 6,
+          "weight": 1.0,
+          "tag": -1
+        },
+        "8": {
+          "src": 7,
+          "dest": 8,
+          "weight": 2.5,
+          "tag": -1
+        }
+      }
+    },
+    "8": {
+      "key": 8,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "5": {
+          "src": 8,
+          "dest": 5,
+          "weight": 3.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "5": {
+          "src": 8,
+          "dest": 5,
+          "weight": 3.0,
+          "tag": -1
+        }
+      }
+    },
+    "9": {
+      "key": 9,
+      "tag": 2147483647,
+      "weight": -1.0,
+      "info": "white",
+      "geo": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "hashEdgeIn": {
+        "0": {
+          "src": 9,
+          "dest": 0,
+          "weight": 1.0,
+          "tag": -1
+        }
+      },
+      "hashEdgeOut": {
+        "0": {
+          "src": 9,
+          "dest": 0,
+          "weight": 1.0,
+          "tag": -1
+        }
+      }
+    }
+  }
+}

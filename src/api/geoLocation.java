@@ -17,6 +17,7 @@ public class geoLocation implements geo_location{
     public geoLocation(double x1, double y1){
         this(x1,y1,0);
     }
+
     @Override
     public double x() {
         return this.x;

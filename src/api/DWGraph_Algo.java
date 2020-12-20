@@ -15,7 +15,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.*;
 
-
+/**
+ * This class represents a Directed (positive) Weighted Graph Theory Algorithms including:
+ * 0. clone(); (copy)
+ * 1. init(graph);
+ * 2. isConnected(); // strongly (all ordered pais connected)
+ * 3. double shortestPathDist(int src, int dest);
+ * 4. List<node_data> shortestPath(int src, int dest);
+ * 5. Save(file); // eJSON fil
+ * 6. Load(file); // JSON file
+ *
+ * @author boaz.benmoshe
+ *
+ */
 
 public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 
@@ -25,54 +37,73 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 	{
 		this.DWGraph = null;
 	}
-
+	/**
+	 * Init the graph on which this set of algorithms operates on.
+	 * @param g
+	 */
 	@Override
 	public void init(directed_weighted_graph g) 
 	{
 		this.DWGraph = g;
 	}
-
+	/**
+	 * Return the underlying graph of which this class works.
+	 * @return
+	 */
 	@Override
 	public directed_weighted_graph getGraph() 
 	{
 		// TODO Auto-generated method stub
 		return this.DWGraph;
 	}
-
+	/**
+	 * Compute a deep copy of this weighted graph.
+	 * @return
+	 */
 	@Override
 	public directed_weighted_graph copy() 
 	{
 		// TODO Auto-generated method stub
 		return new DWGraph_DS((DWGraph_DS)this.DWGraph);
 	}
-
+	/**
+	 * Returns true if and only if (iff) there is a valid path from each node to each
+	 * other node. NOTE: assume directional graph (all n*(n-1) ordered pairs).
+	 * @return
+	 */
 	@Override
-	public boolean isConnected() 
+	public boolean isConnected()
 	{
 		// TODO Auto-generated method stub
 		if(this.DWGraph == null || this.DWGraph.nodeSize() <= 1)
 			return true;
 		if(this.DWGraph.nodeSize() > 1 && this.DWGraph.edgeSize() == 0)
 			return false;
-		Iterator<node_data> it = this.DWGraph.getV().iterator();
-		node_data temp = it.next();
-		return this.isConnected(temp.getKey() , it.next().getKey());
-	}
 
-	public boolean isConnected(int node_id1, int node_id2) 
-	{
-		// TODO Auto-generated method stub
+		Iterator<node_data> it = this.DWGraph.getV().iterator();
+
 		directed_weighted_graph graphCopy1 = this.copy();
 		directed_weighted_graph graphCopy2 = this.copy();
 
-		bfs(graphCopy1.getNode(node_id1));
-		bfs(graphCopy2.getNode(node_id2));
+		bfs(it.next());
+		int id = 0;
+		int range = Integer.MAX_VALUE;
+
 
 		for(node_data node : graphCopy1.getV())
 		{
 			if(node.getKey() == Integer.MAX_VALUE)
 				return false;
+			else
+			{
+				if(node.getTag() < range) {
+					range = node.getTag();
+					id = node.getKey();
+				}
+			}
 		}
+
+		bfs(graphCopy2.getNode(id));
 
 		for(node_data node : graphCopy2.getV())
 		{
@@ -82,7 +113,13 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 
 		return true;
 	}
-
+	/**
+	 * returns the length of the shortest path between src to dest
+	 * Note: if no such path --> returns -1
+	 * @param src - start node
+	 * @param dest - end (target) node
+	 * @return
+	 */
 	@Override
 	public double shortestPathDist(int src, int dest) 
 	{
@@ -97,7 +134,15 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 
 		return graphCopy.getNode(dest).getWeight();
 	}
-
+	/**
+	 * returns the the shortest path between src to dest - as an ordered List of nodes:
+	 * src--> n1-->n2-->...dest
+	 * see: https://en.wikipedia.org/wiki/Shortest_path_problem
+	 * Note if no such path --> returns null;
+	 * @param src - start node
+	 * @param dest - end (target) node
+	 * @return
+	 */
 	@Override
 	public List<node_data> shortestPath(int src, int dest) 
 	{
@@ -126,16 +171,22 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 		}
 		return pathList;
 	}
-
+	/**
+	 * Saves this weighted (directed) graph to the given
+	 * file name - in JSON format
+	 * @param file - the file name (may include a relative path).
+	 * @return true - iff the file was successfully saved
+	 */
 	@Override
 	public boolean save(String file) {
 		//Making json object
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(DWGraph);
 
+
 		//write json to file
 		try {
-			PrintWriter pw = new PrintWriter(new File(file));
+			PrintWriter pw = new PrintWriter(new File("file.json"));
 			pw.write(json);
 			pw.close();
 		} catch (IOException e) {
@@ -144,49 +195,15 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 		}
 		return true;
 	}
-//	public boolean save(String file)
-//	{
-//		JsonObject graph= new JsonObject();
-//		JsonArray edges= new JsonArray();
-//		JsonArray nodes= new JsonArray();
-//
-//
-//		for (node_data n: DWGraph.getV()){
-//			JsonObject node= new JsonObject();
-//			String pos= n.getLocation().x()+","+n.getLocation().y()+","+n.getLocation().z();
-//			node.addProperty("pos", pos);
-//			node.addProperty("id", n.getKey());
-//			nodes.add(node);
-//			for(edge_data e : DWGraph.getE(n.getKey())){
-//				JsonObject edge= new JsonObject();
-//				edge.addProperty("src", e.getSrc());
-//				edge.addProperty("weight",e.getWeight());
-//				edge.addProperty("dest", e.getDest());
-//				edges.add(edge);
-//			}
-//		}
-//
-//		graph.add("Edges",edges);
-//		graph.add("Nodes",nodes);
-//
-//		try
-//		{
-//			Gson gson = new Gson();
-//			PrintWriter pw = new PrintWriter(new File(file));
-//			pw.write(gson.toJson(graph));
-//			pw.close();
-//		}
-//		catch (FileNotFoundException e)
-//		{
-//			e.printStackTrace();
-//			return false;
-//		}
-//		return true;
-//
-//
-//
-//	}
 
+	/**
+	 * This method load a graph to this graph algorithm.
+	 * if the file was successfully loaded - the underlying graph
+	 * of this class will be changed (to the loaded one), in case the
+	 * graph was not loaded the original graph should remain "as is".
+	 * @param file - file name of JSON file
+	 * @return true - iff the graph was successfully loaded.
+	 */
 	@Override
 	public boolean load(String file) {
 		//Making json object
@@ -206,23 +223,7 @@ public class DWGraph_Algo implements dw_graph_algorithms, Serializable {
 		}
 		return true;
 	}
-//	public boolean load(String file)
-//	{
-//		try {
-//			GsonBuilder builder = new GsonBuilder();
-//			builder.registerTypeAdapter(DWGraph_DS.class, new DW_GraphJsonDeserializer());
-//			Gson gson = builder.create();
-//
-//			FileReader reader = new FileReader(file);
-//			this.DWGraph= gson.fromJson(reader, DWGraph_DS.class);
-//		}
-//		catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//
-//		return true;
-//	}
+
 
 
 	//	a function that gets a node from the graph and travel on the graph 
